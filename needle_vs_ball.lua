@@ -10,6 +10,7 @@ ball_sprites={258,260,262,264,266,268,270,288,290,292,294,296,298,300,302}
 
 function TIC()
 	if game_over then
+		stop_music()
 		print_game_over()
 	else
 		cls(10)
@@ -27,7 +28,6 @@ function check_if_ball_popped()
 	is_ball_popped=yb+15>=y and xb+3<=x+6 and xb+12>=x+6
 	if is_ball_popped 
  then
- 	music(0,0,0,0,0)
   random_ball_index()
   score=score+1
   ball_speed=ball_speed+score*0.0005
@@ -71,5 +71,15 @@ function check_if_ball_fell()
 	end
 end
 
+function play_music()
+	music(0,0,0,true,false,150,12)
+end
+
+function stop_music()
+	music()
+end	
+
 random_ball_index()
 xb=random_x_for_ball()
+
+play_music()
